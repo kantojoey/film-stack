@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { handleCalculate } from './JS/util';
 import './App.css'
 
 function App() {
@@ -93,6 +92,7 @@ function App() {
                 name='runtimeHours'
                 min='0'
                 value={movie.runtimeHours}
+                required
                 onChange={(e) => handleMovieChange(e, movie.id)}
               />
               <label htmlFor={`runtimeHours-${movie.id}`}>
@@ -106,6 +106,7 @@ function App() {
                 min='0'
                 max='59'
                 value={movie.runtimeMinutes}
+                required
                 onChange={(e)=> handleMovieChange(e, movie.id)}
               />
               <label htmlFor={`runtimeMinutes-${movie.id}`}>
