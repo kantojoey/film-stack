@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toMinutes, toShowtimeMinutes, estimateStartTime, estimateEndTime } from './JS/util';
 import './App.css'
 
 function App() {
@@ -53,6 +54,10 @@ function App() {
     setBreakLength(e.target.value);
   };
 
+  function handleCalculate() {
+
+  };
+
   // TODO:
   // - bring handleCalculate() into App.jsx
   // - write helper functions in the util file (calculating start/end/gap times)
@@ -76,43 +81,78 @@ function App() {
                 name='title'
                 placeholder='Movie title...'
                 value={movie.title}
-                onChange={(e)=>handleMovieChange(e, movie.id)}
+                onChange={(e) => handleMovieChange(e, movie.id)}
               />
               <label htmlFor={`movie-title-${movie.id}`}>
                 Title
               </label>
             </div>
 
-            <div className='movie-times'>
-              <h3>Runtime</h3>
-              <input
-                id={`runtimeHours-${movie.id}`}
-                type='number'
-                step='1'
-                name='runtimeHours'
-                min='0'
-                value={movie.runtimeHours}
-                required
-                onChange={(e) => handleMovieChange(e, movie.id)}
-              />
-              <label htmlFor={`runtimeHours-${movie.id}`}>
-                Hours
-              </label>
-              <input
-                id={`runtimeMinutes-${movie.id}`}
-                type='number'
-                step='1'
-                name='runtimeMinutes'
-                min='0'
-                max='59'
-                value={movie.runtimeMinutes}
-                required
-                onChange={(e)=> handleMovieChange(e, movie.id)}
-              />
-              <label htmlFor={`runtimeMinutes-${movie.id}`}>
-                Minutes
-              </label>
-            </div>
+            <section className='movie-times'>
+
+              <div className='showtime'>
+                <h3>Showtime</h3>
+                <input
+                  id={`showtime-${movie.id}`}
+                  type='number'
+                  step='1'
+                  name='showtimeHours'
+                  min='0'
+                  value={movie.showtimeHours}
+                  required
+                  onChange={(e) => handleMovieChange(e, movie.id)}
+                />
+                <label htmlFor={`showtimeHours-${movie.id}`}>
+                  Hours
+                </label>
+                <input
+                  id={`showtimeMinutes-${movie.id}`}
+                  type='number'
+                  step='1'
+                  name='showtimeMinutes'
+                  min='0'
+                  max='59'
+                  value={movie.showtimeMinutes}
+                  required
+                  onChange={(e) => handleMovieChange(e, movie.id)}
+                />
+                <label htmlFor={`showtimeMinutes-${movie.id}`}>
+                  Minutes
+                </label>
+              </div>
+
+              <div className='runtime'>
+                <h3>Runtime</h3>
+                <input
+                  id={`runtimeHours-${movie.id}`}
+                  type='number'
+                  step='1'
+                  name='runtimeHours'
+                  min='0'
+                  value={movie.runtimeHours}
+                  required
+                  onChange={(e) => handleMovieChange(e, movie.id)}
+                />
+                <label htmlFor={`runtimeHours-${movie.id}`}>
+                  Hours
+                </label>
+                <input
+                  id={`runtimeMinutes-${movie.id}`}
+                  type='number'
+                  step='1'
+                  name='runtimeMinutes'
+                  min='0'
+                  max='59'
+                  value={movie.runtimeMinutes}
+                  required
+                  onChange={(e) => handleMovieChange(e, movie.id)}
+                />
+                <label htmlFor={`runtimeMinutes-${movie.id}`}>
+                  Minutes
+                </label>
+              </div>
+              
+            </section>
           </fieldset>
         ))}
         <fieldset>
